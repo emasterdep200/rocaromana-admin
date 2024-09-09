@@ -997,7 +997,7 @@ class ApiController extends Controller
             $response = array(
                 'error' => true,
                 'message' => 'Something Went Wrong',
-                'errorm' => $e
+                'errorm' => $e->getMessage()
             );
             return response()->json($response,500);
         }
