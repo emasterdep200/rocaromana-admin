@@ -996,7 +996,8 @@ class ApiController extends Controller
             DB::rollback();
             $response = array(
                 'error' => true,
-                'message' => 'Something Went Wrong'
+                'message' => 'Something Went Wrong',
+                'errorm' => $e
             );
             return response()->json($response,500);
         }
