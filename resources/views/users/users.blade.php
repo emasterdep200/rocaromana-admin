@@ -101,7 +101,7 @@
 
                                 <div class="col-md-12 col-12">
                                     <div class="form-group mandatory">
-                                        <label for="zona" class="form-label col-12 text-center">Zona</label>
+                                        <label for="zona" class="form-label col-12">Zona</label>
                                         <select name="zona" id="zona" class="form-control col-12" data-parsley-required="true">
                                             <option>Seleccionar opción</option>
                                             <option value="BOG">Bogota</option>
