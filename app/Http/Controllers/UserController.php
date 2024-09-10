@@ -46,7 +46,7 @@ class UserController extends Controller
                 'password' => Hash::make($request->Password),
                 'permissions' => isset($request->permissions) ? json_encode($request->permissions) : '',
                 'type' => 1,
-                'zona' => $request->zona
+                'zone' => $request->zona
             ]);
             return redirect()->back()->with('success', 'User Insert Successfully');
         }
@@ -87,7 +87,7 @@ class UserController extends Controller
             $update->email = $request->email;
             $update->permissions = isset($request->Editpermissions) ? json_encode($request->Editpermissions) : '';
             $update->status = $request->status;
-            $update->zona = $request->zona;
+            $update->zone = $request->zona;
             $update->save();
             return redirect()->back()->with('success', 'User Update Successfully');
         }
