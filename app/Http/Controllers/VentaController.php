@@ -24,10 +24,16 @@ class VentaController extends Controller{
 
     public function dashboard(){
 
+        if(Auth::user()->zone != NULL){
+            $customers = Customer::where(['is_asesor' => 0, 'city' => Auth::user()->zone])->count();
+            $asesores  = Asesor::where(['ciudad' => Auth::user()->zone])->count();
+            $ventas    = Ventas::where([])->with('package')->get();
+        }else{
+            $customers = Customer::where(['is_asesor' => 0])->count();
+            $asesores  = Asesor::all()->count();
+            $ventas    = Ventas::with('package')->get();
+        }
 
-        $customers = Customer::where(['is_asesor' => 0])->count();
-        $asesores  = Asesor::all()->count();
-        $ventas    = Ventas::with('package')->get();
 
         $today = now();
         $startDate = $today->copy()->startOfMonth();
