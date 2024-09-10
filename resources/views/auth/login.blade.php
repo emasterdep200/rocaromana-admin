@@ -44,11 +44,13 @@
 
                                 <div class="form-group position-relative form-floating mb-4">
                                     <input id="floatingInput" type="email" placeholder="Email"
-                                        class="form-control form-input @error('email') is-invalid "
+                                        class="form-control form-input @error('email') is-invalid @enderror"
                                         name="email" value="{{ old('email') }}" required autocomplete="email"
                                         autofocus>
 
-                                       @error('email') {{ $message }}  @enderror
+                                       @error('email') 
+                                          {{ $message }} 
+                                       @enderror
                                     <label for="floatingInput">Email address</label>
 
                                 </div>
