@@ -230,6 +230,21 @@
 
                                 <div class="col-md-12 col-12">
                                     <div class="form-group mandatory">
+                                        <label for="zona" class="form-label col-12 text-center">Zona</label>
+                                        <select name="zona" id="zona" class="form-control col-12" data-parsley-required="true">
+                                            <option>Seleccionar opción</option>
+                                            <option value="BOG">Bogota</option>
+                                            <option value="MED">Medellin</option>
+                                            <option value="CAL">Cali</option>
+                                            <option value="BAQ">Barranquilla</option>
+                                            <option value="CTG">Cartagena</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-12 col-12">
+                                    <div class="form-group mandatory">
                                         <label for="email" class="form-label col-12 text-center">Active Status</label>
                                         {!! Form::select('status', ['0' => 'Inactive', '1' => 'Active'], '', [
                                             'class' => 'form-select',
