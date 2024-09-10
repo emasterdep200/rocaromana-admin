@@ -46,9 +46,10 @@
                             <thead>
                                 <tr>
                                     <th scope="col" data-field="id" data-sortable="true" data-align="center">ID</th>
-                                    <th scope="col" data-field="name" data-sortable="true" data-align="center">Name</th>
+                                    <th scope="col" data-field="name" data-sortable="true" data-align="center">Nombre</th>
                                     <th scope="col" data-field="email" data-sortable="true" data-align="center">Email</th>
                                     <th scope="col" data-field="status" data-sortable="false" data-align="center">Active Status</th>
+                                    <th scope="col" data-field="zone" data-sortable="false" data-align="center">Ciudad</th>
                                     <th scope="col" data-field="operate" data-sortable="false"
                                         data-events="actionEvents" data-align="center">Action</th>
                                 </tr>
