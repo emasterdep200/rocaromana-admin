@@ -293,6 +293,7 @@ class WebhookController extends Controller
                     $venta->id_asesor   = $asesor->id;
                     $venta->id_cliente  = $user->id;
                     $venta->plan        = $package_id;
+                    $venta->city        = $asesor->ciudad;
                     $venta->save();
                 }
 
