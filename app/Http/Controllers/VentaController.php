@@ -27,7 +27,7 @@ class VentaController extends Controller{
         if(Auth::user()->zone != NULL){
             $customers = Customer::where(['is_asesor' => 0, 'city' => Auth::user()->zone])->count();
             $asesores  = Asesor::where(['ciudad' => Auth::user()->zone])->count();
-            $ventas    = Ventas::where([])->with('package')->get();
+            $ventas    = Ventas::where(['city' => Auth::user()->zone])->with('package')->get();
         }else{
             $customers = Customer::where(['is_asesor' => 0])->count();
             $asesores  = Asesor::all()->count();
@@ -64,6 +64,7 @@ class VentaController extends Controller{
                         DB::raw('DAYOFWEEK(rc_ventas.created_at) as day_of_week'),
                         DB::raw('SUM(packages.price) as count'),
                     )
+                    ->where('city', Auth::user()->zone)
                     ->join('packages','rc_ventas.plan', 'packages.id')
                     ->groupBy(DB::raw('DAYOFWEEK(rc_ventas.created_at)'))
                     ->get();
