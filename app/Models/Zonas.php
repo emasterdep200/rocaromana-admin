@@ -15,7 +15,7 @@ class Zonas extends Model
 
 
     public function ciudades(): BelongsTo{
-        return $this->belongsTo(Ciudades::class, 'id_zona', 'id');
+        return $this->belongsTo(Ciudades::class, 'id', 'id_zona');
     }
 
 }
