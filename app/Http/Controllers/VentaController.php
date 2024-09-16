@@ -79,7 +79,7 @@ class VentaController extends Controller{
                         DB::raw('DAYOFWEEK(rc_ventas.created_at) as day_of_week'),
                         DB::raw('SUM(packages.price) as count'),
                     )
-                    ->where('city', Auth::user()->zone)
+                    ->whereIn('city', $ciudadeCodes)
                     ->join('packages','rc_ventas.plan', 'packages.id')
                     ->groupBy(DB::raw('DAYOFWEEK(rc_ventas.created_at)'))
                     ->get();
