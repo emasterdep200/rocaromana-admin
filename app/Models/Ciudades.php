@@ -7,15 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
-class Zonas extends Model
+class Ciudades extends Model
 {
     use HasFactory;
 
-    protected $table = 'rc_zonas';
+    protected $table = 'rc_ciudades';
 
-
-    public function ciudades(): BelongsTo{
-        return $this->belongsTo(Ciudades::class, 'id_zona', 'id');
-    }
 
 }

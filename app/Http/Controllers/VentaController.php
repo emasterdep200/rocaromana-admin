@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Asesor;
 use App\Models\Ventas;
 use App\Models\Customer;
+use App\Models\Zonas;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,10 @@ class VentaController extends Controller{
 
 
     public function dashboard(){
+
+        $zonas = Zonas::where(['id' => Auth::user()->zona])->with('ciudades')->first();
+
+        print($zonas->ciudades());
 
         if(Auth::user()->zone != NULL){
             $customers = Customer::where(['is_asesor' => 0, 'city' => Auth::user()->zone])->count();
