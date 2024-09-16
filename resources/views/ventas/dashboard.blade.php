@@ -113,7 +113,12 @@ $lang = Session::get('language');
                     </tr>
                 </thead>
                 <tbody>
-
+                    @foreach($ventasCiudad as $vciudad)
+                        <tr>
+                            <td>{{ $vciudad['nombre'] }}</td>
+                            <td>{{ $vciudad['ventas'] }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
