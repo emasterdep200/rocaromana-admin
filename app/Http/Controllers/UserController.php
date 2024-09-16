@@ -9,6 +9,10 @@ use App\Services\ResponseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+
+use App\Models\Zonas;
+
+
 class UserController extends Controller
 {
     /**
@@ -20,9 +24,9 @@ class UserController extends Controller
     {
 
         $system_modules = config('rolepermission');
+        $zonas = Zonas::all();
 
-
-        return view('users.users', compact('system_modules'));
+        return view('users.users', compact('system_modules','zonas'));
     }
 
 
