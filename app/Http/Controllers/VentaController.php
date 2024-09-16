@@ -35,6 +35,8 @@ class VentaController extends Controller{
 
             $ciudadeCodes = [];
 
+            Log::info($zona);
+
             $zona->ciudades->each(function ($ciudad) use (&$ciudadeCodes) {
                 array_push($ciudadeCodes, $ciudad->codigo);
             });
