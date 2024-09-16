@@ -8,6 +8,7 @@ use App\Models\Asesor;
 use App\Models\Ventas;
 use App\Models\Customer;
 use App\Models\Zonas;
+use App\Models\Ciudades;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -49,6 +50,16 @@ class VentaController extends Controller{
             $asesores  = Asesor::whereIn('ciudad', $ciudadeCodes)->count();
             $ventas    = Ventas::whereIn('city', $ciudadeCodes)->with('package')->get();
         }else{
+
+            $ciudades = Ciudades::all();
+
+            $ciudades->each(function ($ciudad) use (&$ventasCiudad) {
+                $ventasCiudad[$ciudad->codigo] = [
+                    'nombre' => $ciudad->nombre,
+                    'ventas' => Ventas::where(['city' => $ciudad->codigo])->count()
+                ];
+            });
+
             $customers = Customer::where(['is_asesor' => 0])->count();
             $asesores  = Asesor::all()->count();
             $ventas    = Ventas::with('package')->get();
