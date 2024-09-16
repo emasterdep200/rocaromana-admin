@@ -31,9 +31,9 @@ class VentaController extends Controller{
 
 
         if(Auth::user()->zone != NULL){
-            $zona = Zonas::where(['id' => Auth::user()->zone])->first();
+            $zona = Zonas::where(['id' => Auth::user()->zone])->whit('ciudades')->get();
 
-            Log::info($zona->ciudades);  
+            Log::info($zona[0]->ciudades);  
 
 
             $customers = Customer::where(['is_asesor' => 0, 'city' => Auth::user()->zone])->count();
