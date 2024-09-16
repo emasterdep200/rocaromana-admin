@@ -82,7 +82,7 @@ $lang = Session::get('language');
     </div>
 
     <div class="row">
-        <div class="col-md-12 page-content bg-white rounded">
+        <div class="col-md-6 page-content bg-white rounded">
             <h2 class="text-left">Ventas en miles</h2>
             <div class="chart_tab">
                 <nav>
@@ -102,6 +102,20 @@ $lang = Session::get('language');
             <section id="tab1" data-tab-content>
                 <div class="chart" id="chart"></div>
             </section>
+        </div>
+        <div class="col-md-6 page-content bg-white rounded">
+            <h2 class="text-left">Distribución por ciudad</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ciudad</th>
+                        <th>Cantidad en miles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
         </div>
     </div>
 
