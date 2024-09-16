@@ -28,12 +28,12 @@ class VentaController extends Controller{
 
     public function dashboard(){
 
-
+        $ciudadeCodes = [];
+        $ventasCiudad = [];
 
         if(Auth::user()->zone != NULL){
 
-            $ciudadeCodes = [];
-            $ventasCiudad = [];
+           
 
             $zona = Zonas::where(['id' => Auth::user()->zone])->with('ciudades')->get();
             $zona[0]->ciudades->each(function ($ciudad) use (&$ciudadeCodes, &$ventasCiudad) {
@@ -80,14 +80,18 @@ class VentaController extends Controller{
 
 
             $sellweekpropertyCounts = DB::table('rc_ventas')
-                    ->select(
-                        DB::raw('DAYOFWEEK(rc_ventas.created_at) as day_of_week'),
-                        DB::raw('SUM(packages.price) as count'),
-                    )
-                    ->whereIn('city', $ciudadeCodes)
-                    ->join('packages','rc_ventas.plan', 'packages.id')
-                    ->groupBy(DB::raw('DAYOFWEEK(rc_ventas.created_at)'))
-                    ->get();
+            ->select(
+                DB::raw('DAYOFWEEK(rc_ventas.created_at) as day_of_week'),
+                DB::raw('SUM(packages.price) as count'),
+            );
+            
+            if(Auth::user()->zone != null){
+                $sellweekpropertyCounts->whereIn('city', $ciudadeCodes);
+            }
+                    
+            $sellweekpropertyCounts->join('packages','rc_ventas.plan', 'packages.id')
+            ->groupBy(DB::raw('DAYOFWEEK(rc_ventas.created_at)'))
+            ->get();
 
             $sellweekSeries = array_fill(1, 7, 0);
 
