@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
 class Zonas extends Model
@@ -14,8 +13,8 @@ class Zonas extends Model
     protected $table = 'rc_zonas';
 
 
-    public function ciudades(): BelongsTo{
-        return $this->belongsTo(Ciudades::class, 'id', 'id_zona');
+    public function ciudades(){
+        return $this->hasMany(Ciudades::class, 'id_zona', 'id');
     }
 
 }
