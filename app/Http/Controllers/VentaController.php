@@ -33,10 +33,15 @@ class VentaController extends Controller{
         if(Auth::user()->zone != NULL){
 
             $ciudadeCodes = [];
+            $ventasCiudad = [];
 
             $zona = Zonas::where(['id' => Auth::user()->zone])->with('ciudades')->get();
-            $zona[0]->ciudades->each(function ($ciudad) use (&$ciudadeCodes) {
+            $zona[0]->ciudades->each(function ($ciudad) use (&$ciudadeCodes, &$ventasCiudad) {
                 array_push($ciudadeCodes, $ciudad->codigo);
+                $ventasCiudad[$ciudad->codigo] = [
+                    'nombre' => $ciudad->nombre,
+                    'ventas' => Ventas::where(['city' => $ciudad->codigo])->count()
+                ];
             });
 
 
@@ -134,7 +139,7 @@ class VentaController extends Controller{
 
 
 
-        return view('ventas/dashboard', compact('asesores','sum_ventas', 'customers','chartData', 'paquetes'));
+        return view('ventas/dashboard', compact('asesores','sum_ventas', 'customers','chartData', 'paquetes', 'ventasCiudad'));
     }
 
 }

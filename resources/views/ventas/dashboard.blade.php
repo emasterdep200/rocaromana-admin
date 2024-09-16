@@ -109,7 +109,7 @@ $lang = Session::get('language');
                 <thead>
                     <tr>
                         <th>Ciudad</th>
-                        <th>Cantidad en miles</th>
+                        <th>Cantidad de paquetes</th>
                     </tr>
                 </thead>
                 <tbody>
