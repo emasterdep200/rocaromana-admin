@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
 
+use Illuminate\Support\Facades\Log;
+
+
 class VentaController extends Controller{
     
 
@@ -30,9 +33,8 @@ class VentaController extends Controller{
         if(Auth::user()->zone != NULL){
             $zona = Zonas::where(['id' => Auth::user()->zona])->with('ciudades')->first();
 
-            print($zona);
+            Log::info($zona);
 
-            dd();
 
             $customers = Customer::where(['is_asesor' => 0, 'city' => Auth::user()->zone])->count();
             $asesores  = Asesor::where(['ciudad' => Auth::user()->zone])->count();
