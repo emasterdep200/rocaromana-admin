@@ -31,19 +31,16 @@ class VentaController extends Controller{
 
 
         if(Auth::user()->zone != NULL){
-            $zona = Zonas::where(['id' => Auth::user()->zone])->with('ciudades')->get();
 
             $ciudadeCodes = [];
 
-            Log::info($zona);
-
+            $zona = Zonas::where(['id' => Auth::user()->zone])->with('ciudades')->get();
             $zona[0]->ciudades->each(function ($ciudad) use (&$ciudadeCodes) {
                 array_push($ciudadeCodes, $ciudad->codigo);
             });
 
-            Log::info($ciudadeCodes);
 
-            $customers = Customer::where(['is_asesor' => 0, 'city' => Auth::user()->zone])->count();
+            $customers = Customer::where(['is_asesor' => 0])->whereIn('city', $ciudadeCodes)->count();
             $asesores  = Asesor::where(['ciudad' => Auth::user()->zone])->count();
             $ventas    = Ventas::where(['city' => Auth::user()->zone])->with('package')->get();
         }else{
