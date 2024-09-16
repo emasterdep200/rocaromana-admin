@@ -105,7 +105,7 @@ $lang = Session::get('language');
         </div>
         <div class="col-md-6 page-content bg-white rounded">
             <h2 class="text-left">Distribución por ciudad</h2>
-            <table>
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Ciudad</th>
@@ -113,7 +113,7 @@ $lang = Session::get('language');
                     </tr>
                 </thead>
                 <tbody>
-                    
+
                 </tbody>
             </table>
         </div>
