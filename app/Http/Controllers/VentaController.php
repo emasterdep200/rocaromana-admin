@@ -41,8 +41,8 @@ class VentaController extends Controller{
 
 
             $customers = Customer::where(['is_asesor' => 0])->whereIn('city', $ciudadeCodes)->count();
-            $asesores  = Asesor::where(['ciudad' => Auth::user()->zone])->count();
-            $ventas    = Ventas::where(['city' => Auth::user()->zone])->with('package')->get();
+            $asesores  = Asesor::where(['ciudad' => Auth::user()->zone])->whereIn('ciudad', $ciudadeCodes)->count();
+            $ventas    = Ventas::where(['city' => Auth::user()->zone])->whereIn('city', $ciudadeCodes)->with('package')->get();
         }else{
             $customers = Customer::where(['is_asesor' => 0])->count();
             $asesores  = Asesor::all()->count();
