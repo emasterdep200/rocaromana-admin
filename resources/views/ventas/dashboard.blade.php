@@ -77,6 +77,22 @@ $lang = Session::get('language');
                     </a>
                 </div>
 
+                @foreach($paquetes as $paquete)
+                <div class="col-md-3">
+                    <div class="card border">
+                        <div class="card_info">
+                            <div class="total_number">
+                                {{ $paquete->vendidos }}
+                            </div>
+
+                            <div class="card_title">
+                                {{ $paquete->name }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
             </div>
         </div>
     </div>
@@ -124,26 +140,6 @@ $lang = Session::get('language');
         </div>
     </div>
 
-    <div class="row my-4">
-        <div class="col-md-12 page-content bg-white rounded">
-        <h2 class="text-left">Paquetes vendidos</h2>
-            @foreach($paquetes as $paquete)
-            <div class="col-md-3">
-                <div class="card border">
-                    <div class="card_info">
-                        <div class="total_number">
-                            {{ $paquete->vendidos }}
-                        </div>
-
-                        <div class="card_title">
-                            {{ $paquete->name }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
 
 </section>
 @endsection
