@@ -26,6 +26,7 @@ use App\Http\Controllers\WebhookController;
 use App\Http\Controllers\AsesorController;
 use App\Http\Controllers\ComisionController;
 use App\Http\Controllers\VentaController;
+use App\Http\Controllers\AnuncioController;
 use Illuminate\Support\Facades\Artisan;
 
 /*
@@ -271,7 +272,10 @@ Route::middleware(['auth', 'checklogin','language'])->group(function () {
     Route::get('list_comisiones', [ComisionController::class, 'show'])->name('list_comisiones');
     Route::get('comercial/dashboard', [VentaController::class, 'dashboard'])->name('comercial.dashboard');
 
+    // Rutas para los anuncios
+    Route::get('anuncios', [AnuncioController::class, 'index'])->name('anuncios');
 
+    // Ruta Chat
     Route::get('chat', function () {
         return view('chat');
     });
