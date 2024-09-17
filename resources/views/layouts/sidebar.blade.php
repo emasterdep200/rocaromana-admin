@@ -162,6 +162,16 @@
                     </a>
                 </li>
                 @endif
+
+                @if (has_permissions('read', 'anuncios'))
+                <li class="sidebar-item">
+                    <a href="{{ url('anuncios') }}" class='sidebar-link'>
+                        <i class="bi bi-badge-ad"></i>
+                        <span class="menu-item">{{ __('Anuncios') }}</span>
+                    </a>
+                </li>
+                @endif
+
                 @if (has_permissions('read', 'advertisement'))
                 <li class="sidebar-item">
                     <a href="{{ url('featured_properties') }}" class='sidebar-link'>
