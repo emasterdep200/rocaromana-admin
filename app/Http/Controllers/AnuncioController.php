@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Usertokens;
 use Illuminate\Http\Request;
 use App\Models\Notifications;
-use App\Models\Asesor;
+use App\Models\Anuncio;
 use App\Models\Package;
 use App\Services\ResponseService;
 
@@ -51,16 +51,16 @@ class AnuncioController extends Controller
 
         $offset = $request->input('offset', 0);
         $limit  = $request->input('limit', 10);
-        $sort   = $request->input('sort', 'sequence');
+        $sort   = $request->input('sort', 'id');
         $order  = $request->input('order', 'ASC');
 
 
-        $sql = Asesor::orderBy($sort, $order);
+        $sql = Anuncio::orderBy($sort, $order);
 
 
         if (isset($_GET['search']) && !empty($_GET['search'])) {
             $search = $_GET['search'];
-            $sql->where('id', 'LIKE', "%$search%")->orwhere('email', 'LIKE', "%$search%")->orwhere('name', 'LIKE', "%$search%");
+            $sql->where('id', 'LIKE', "%$search%")->orwhere('titulo', 'LIKE', "%$search%");
         }
 
 
@@ -70,7 +70,7 @@ class AnuncioController extends Controller
             $sql->skip($offset)->take($limit);
         }
 
-        $res = $sql->with('ventas')->get();
+        $res = $sql->get();
 
         $bulkData = array();
         $bulkData['total'] = $total;
@@ -88,17 +88,8 @@ class AnuncioController extends Controller
 
             $operate = '<a  id="' . $row->id . '"  data-id="' . $row->id . '"class="btn icon btn-primary btn-sm rounded-pill editdata"  data-bs-toggle="modal" data-bs-target="#viewDetailAsesor"  title="Detalle"><i class="fa fa-eye"></i></a>';
 
-            $ventas = 0;
-
-            foreach($row->ventas as $venta){
-                $ventas += intval((Package::where(['id' => $venta->plan])->first())->price);
-            }
-
-            $seguimiento = $ventas * 100 / $presupuesto;
-
-            $tempRow['nombre']  = $row->nombres.' '.$row->apellidos;
+            $tempRow['titulo']  = $row->titulo;
             $tempRow['operate'] = $operate;
-            $tempRow['presupuesto'] = $seguimiento;
             $rows[] = $tempRow;
             $count++;
         }
