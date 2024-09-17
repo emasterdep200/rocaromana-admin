@@ -84,7 +84,7 @@
                         <!-- Campo Imagen -->
                         <div class="mb-3">
                             <label for="imagen" class="form-label">Imagen</label>
-                            <input type="file" class="form-control" name="imagen" id="imagen" accept="image/*" required>
+                            <input type="file" class="form-control" name="image" id="imagen" accept="image/*" required>
                         </div>
 
                         <!-- Campo Link -->
