@@ -35,14 +35,14 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <table class="table-light" aria-describedby="mydesc" class='table-striped' id="table_list"
+                        <table class="table table-borderless" aria-describedby="mydesc" class='table-striped' id="table_list"
                             data-toggle="table" data-url="{{ url('anuncios_listing') }}" data-click-to-select="true"
                             data-side-pagination="server" data-pagination="true"
                             data-page-list="[5, 10, 20, 50, 100, 200,All]" data-search="true" data-toolbar="#toolbar"
                             data-show-columns="true" data-show-refresh="true" data-trim-on-search="false"
                             data-responsive="true" data-sort-name="id" data-sort-order="desc"
                             data-pagination-successively-size="3" data-query-params="queryParams">
-                            <thead>
+                            <thead class="thead-dark">
                                 <tr>
                                     <th scope="col" data-field="id" data-sortable="true" data-align="center">ID</th>
                                     <th scope="col" data-field="titulo" data-sortable="true" data-align="center">Titulo</th>
