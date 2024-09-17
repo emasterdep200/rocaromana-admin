@@ -274,7 +274,7 @@ Route::middleware(['auth', 'checklogin','language'])->group(function () {
 
     // Rutas para los anuncios
     Route::get('anuncios', [AnuncioController::class, 'index'])->name('anuncios');
-    Route::get('anuncios_listing', [AsesorController::class, 'show'])->name('list_anuncio');
+    Route::get('anuncios_listing', [AnuncioController::class, 'show'])->name('list_anuncio');
 
     // Ruta Chat
     Route::get('chat', function () {
