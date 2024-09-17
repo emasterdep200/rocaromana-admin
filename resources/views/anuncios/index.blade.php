@@ -72,29 +72,29 @@
                 </div>
                 <div class="modal-body">
 
-                    <form>
+                    <form method="post" action="{{ url('anuncio_create') }}" enctype="multipart/form-data">
                         <!-- Campo Título -->
                         <div class="mb-3">
                             <label for="titulo" class="form-label">Título</label>
-                            <input type="text" class="form-control" id="titulo" placeholder="Ingresa el título" required>
+                            <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Ingresa el título" required>
                         </div>
 
                         <!-- Campo Imagen -->
                         <div class="mb-3">
                             <label for="imagen" class="form-label">Imagen</label>
-                            <input type="file" class="form-control" id="imagen" accept="image/*" required>
+                            <input type="file" class="form-control" name="imagen" id="imagen" accept="image/*" required>
                         </div>
 
                         <!-- Campo Link -->
                         <div class="mb-3">
                             <label for="link" class="form-label">Link</label>
-                            <input type="url" class="form-control" id="link" placeholder="Ingresa el link" required>
+                            <input type="url" class="form-control" name="link" id="link" placeholder="Ingresa el link" required>
                         </div>
 
                         <!-- Campo Estado -->
                         <div class="mb-3">
                             <label for="estado" class="form-label">Estado</label>
-                            <select class="form-select" id="estado" required>
+                            <select class="form-select" id="estado" name="estado" required>
                                 <option value="">Selecciona un estado</option>
                                 <option value="activo">Activo</option>
                                 <option value="inactivo">Inactivo</option>

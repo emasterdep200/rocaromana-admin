@@ -7,6 +7,7 @@ return [
     'PROJECT_SEO_IMG_PATH' => '/project_seo_img/',
 
     'SLIDER_IMG_PATH' => '/slider/',
+    'PUBS_IMG_PATH' => '/publicity/',
     'NOTIFICATION_IMG_PATH' => '/notification/',
     'USER_IMG_PATH' => '/users/',
     'CHAT_FILE' => '/chat/',

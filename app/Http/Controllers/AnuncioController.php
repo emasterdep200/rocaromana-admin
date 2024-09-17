@@ -41,7 +41,30 @@ class AnuncioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'image' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+        ]);
+
+        $destinationPath = public_path('images') . config('global.PUBS_IMG_PATH');
+
+        if (!is_dir($destinationPath)) {
+            mkdir($destinationPath, 0777, true);
+        }
+
+        $name = '';
+
+        if ($request->hasfile('image')) {
+            $name = \store_image($request->file('image'), 'PUBS_IMG_PATH');
+        }
+
+        Anuncio::create([
+            'titulo' => (isset($request->titulo)) ? $request->titulo : 0,
+            'imagen' => ($name) ? $name : '',
+            'link'   => (isset($request->link)) ? $request->link : 0,
+            'estado' => (isset($request->estado)) ? $request->estado : 0
+        ]);
+
+        ResponseService::successRedirectResponse('Publicidad agregada con exito.');
     }
 
 

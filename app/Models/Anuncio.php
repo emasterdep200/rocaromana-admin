@@ -13,4 +13,12 @@ class Anuncio extends Model
 
     protected $table = 'rc_anuncios';
 
+
+    protected $fillable = [
+        'imagen',
+        'titulo',
+        'link',
+        'estado'
+    ];
+
 }
