@@ -73,6 +73,8 @@
                 <div class="modal-body">
 
                     <form method="post" action="{{ url('anuncio_create') }}" enctype="multipart/form-data">
+                    @csrf
+
                         <!-- Campo Título -->
                         <div class="mb-3">
                             <label for="titulo" class="form-label">Título</label>
