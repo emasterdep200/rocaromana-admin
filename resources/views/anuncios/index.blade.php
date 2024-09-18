@@ -186,7 +186,7 @@
                 $("form[name=update] #titulo").val(row.titulo);
                 $("form[name=update] #link").val(row.link);
                 $("form[name=update] #estado").val(row.estado);
-                $("form[name=id] #id").val(row.id);
+                $("form[name=update] #id").val(row.id);
 
                 $('form[name=update] img[rel=current_image]').attr('src', `https://admin.rocaromana.com/images/publicity/${row.imagen}`);
 
