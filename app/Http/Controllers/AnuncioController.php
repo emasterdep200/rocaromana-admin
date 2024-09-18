@@ -214,6 +214,18 @@ class AnuncioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $getImage = Anuncio::where('id', $id)->first();
+        $image = $getImage->getAttributes()['imagen'];
+
+        if (Anuncio::where('id', $id)->delete()) {
+            if (file_exists(public_path('images') . config('global.PUBS_IMG_PATH') . $image)) {
+                unlink(public_path('images') . config('global.PUBS_IMG_PATH') . $image);
+            }
+            ResponseService::successRedirectResponse('slider delete successfully');
+        } else {
+            ResponseService::errorRedirectResponse(null, 'something is wrong !!!');
+        }
+        
     }
 }

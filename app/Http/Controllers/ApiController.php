@@ -884,7 +884,7 @@ class ApiController extends Controller
                 $saveProperty->code = $code;
 
 
-                $saveProperty->is_premium = isset($request->is_premium) ? ($request->is_premium == "true" ? 1 : 0) : 0;
+                $saveProperty->is_premium = 0;
                 $saveProperty->save();
 
 
