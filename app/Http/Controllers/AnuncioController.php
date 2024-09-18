@@ -152,7 +152,7 @@ class AnuncioController extends Controller
             $anuncio->link   = $request->link;
             $anuncio->estado = $request->estado;
 
-            $image = $getImage->getAttributes()['imagen'];
+            $image = $anuncio->getAttributes()['imagen'];
 
             if (file_exists(public_path('images') . config('global.PUBS_IMG_PATH') . $image)) {
                 unlink(public_path('images') . config('global.PUBS_IMG_PATH') . $image);
