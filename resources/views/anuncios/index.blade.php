@@ -125,7 +125,7 @@
                 </div>
                 <div class="modal-body">
 
-                    <form method="post" action="{{ url('anuncio_create') }}" enctype="multipart/form-data" id="update">
+                    <form method="post" action="{{ url('anuncio_create') }}" enctype="multipart/form-data" name="update">
                     @csrf
 
                         <!-- Campo Título -->
