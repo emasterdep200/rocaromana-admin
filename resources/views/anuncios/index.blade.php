@@ -138,6 +138,9 @@
                         <div class="mb-3">
                             <label for="imagen" class="form-label">Imagen</label>
                             <input type="file" class="form-control" name="image" id="imagen" accept="image/*" required>
+                            <p>
+                                <img src rel="current_image" heigth="200" width="200">
+                            </p>
                         </div>
 
                         <!-- Campo Link -->
@@ -182,6 +185,7 @@
                 $("form[name=update] #link").val(row.link);
                 $("form[name=update] #estado").val(row.estado);
 
+                $('form[name=update] img[rel=current_image]').attr('src', `https://admin.rocaromana.com/images/publicity/${row.imagen}`);
 
 
             }
