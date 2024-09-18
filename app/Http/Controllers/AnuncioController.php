@@ -109,7 +109,7 @@ class AnuncioController extends Controller
 
             $tempRow = $row->toArray();
 
-            $operate = '<a  id="' . $row->id . '"  data-id="' . $row->id . '"class="btn icon btn-primary btn-sm rounded-pill editdata"  data-bs-toggle="modal" data-bs-target="#viewDetailAsesor"  title="Detalle"><i class="fa fa-pencil"></i></a>';
+            $operate = '<a  id="' . $row->id . '"  data-id="' . $row->id . '"class="btn icon btn-primary btn-sm rounded-pill editdata"  data-bs-toggle="modal" data-bs-target="#viewEditAnuncio"  title="Detalle"><i class="fa fa-edit"></i></a>';
 
             $tempRow['titulo']  = $row->titulo;
             $tempRow['operate'] = $operate;
