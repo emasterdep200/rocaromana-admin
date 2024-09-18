@@ -125,7 +125,7 @@
                 </div>
                 <div class="modal-body">
 
-                    <form method="post" action="{{ url('anuncio_create') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ url('anuncio_create') }}" enctype="multipart/form-data" id="update">
                     @csrf
 
                         <!-- Campo Título -->
@@ -178,9 +178,9 @@
 
                 console.log(row);
 
-                $("#titulo").val(row.titulo);
-                $("#link").val(row.link);
-                $("#estado").val(row.estado);
+                $("#update #titulo").val(row.titulo);
+                $("#update #link").val(row.link);
+                $("#update #estado").val(row.estado);
 
 
 
