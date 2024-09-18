@@ -178,10 +178,9 @@
 
                 console.log(row);
 
-                $("#nombre").text(row.nombres+' '+row.apellidos);
-                $("#email").text(row.email);
-                $("#cedula").text(row.cedula);
-                $("#telefono").text(row.celular);
+                $("#titulo").text(row.nombres+' '+row.apellidos);
+                $("#link").text(row.email);
+                $("#estado").value(row.cedula);
 
 
 
