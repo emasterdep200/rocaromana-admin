@@ -154,19 +154,20 @@ class AnuncioController extends Controller
 
             $image = $anuncio->getAttributes()['imagen'];
 
-            if (file_exists(public_path('images') . config('global.PUBS_IMG_PATH') . $image)) {
-                unlink(public_path('images') . config('global.PUBS_IMG_PATH') . $image);
-            }
-
-            $destinationPath = public_path('images') . config('global.PUBS_IMG_PATH');
-
-            if (!is_dir($destinationPath)) {
-                mkdir($destinationPath, 0777, true);
-            }
-
             $name = '';
 
             if ($request->hasfile('image')) {
+
+                if (file_exists(public_path('images') . config('global.PUBS_IMG_PATH') . $image)) {
+                    unlink(public_path('images') . config('global.PUBS_IMG_PATH') . $image);
+                }
+    
+                $destinationPath = public_path('images') . config('global.PUBS_IMG_PATH');
+    
+                if (!is_dir($destinationPath)) {
+                    mkdir($destinationPath, 0777, true);
+                }
+
                 $name = \store_image($request->file('image'), 'PUBS_IMG_PATH');
             }
 
