@@ -178,9 +178,9 @@
 
                 console.log(row);
 
-                $("#update #titulo").val(row.titulo);
-                $("#update #link").val(row.link);
-                $("#update #estado").val(row.estado);
+                $("form[name=update] #titulo").val(row.titulo);
+                $("form[name=update] #link").val(row.link);
+                $("form[name=update] #estado").val(row.estado);
 
 
 
