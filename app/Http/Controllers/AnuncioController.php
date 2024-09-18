@@ -146,8 +146,6 @@ class AnuncioController extends Controller
     public function update(Request $request)
     {
 
-        return $request;
-
         try {
             $anuncio = Anuncio::where(['id' => $request->id])->first();
             $anuncio->titulo = $request->titulo;
