@@ -175,7 +175,7 @@ class AnuncioController extends Controller
 
             ResponseService::successRedirectResponse('Advertisement status update Successfully');
         } catch (\Throwable $th) {
-            ResponseService::errorResponse("Error al actualizar el anuncio.");
+            ResponseService::errorResponse("Error al actualizar el anuncio.  ".$th);
         }
 
         
