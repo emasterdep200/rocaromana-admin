@@ -125,8 +125,10 @@
                 </div>
                 <div class="modal-body">
 
-                    <form method="post" action="{{ url('anuncio_create') }}" enctype="multipart/form-data" name="update">
-                    @csrf
+                    <form method="post" action="{{ url('anuncio_update') }}" enctype="multipart/form-data" name="update">
+                    @csrf   
+
+                        <input type="hidden" name="id" id="id">
 
                         <!-- Campo Título -->
                         <div class="mb-3">
@@ -139,7 +141,7 @@
                             <label for="imagen" class="form-label">Imagen</label>
                             <input type="file" class="form-control" name="image" id="imagen" accept="image/*" required>
                             <p>
-                                <img src rel="current_image" heigth="200" width="200">
+                                <img src rel="current_image" heigth="200" width="200" class="rounded m-3">
                             </p>
                         </div>
 
@@ -184,6 +186,7 @@
                 $("form[name=update] #titulo").val(row.titulo);
                 $("form[name=update] #link").val(row.link);
                 $("form[name=update] #estado").val(row.estado);
+                $("form[name=id] #id").val(row.id);
 
                 $('form[name=update] img[rel=current_image]').attr('src', `https://admin.rocaromana.com/images/publicity/${row.imagen}`);
 

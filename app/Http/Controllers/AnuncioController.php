@@ -145,55 +145,40 @@ class AnuncioController extends Controller
      */
     public function update(Request $request)
     {
-        if (!has_permissions('update', 'advertisement')) {
-            $response['error'] = true;
-            $response['message'] = PERMISSION_ERROR_MSG;
-            return response()->json($response);
-        } else {
-            Advertisement::find($request->id)->update(['status' => $request->edit_adv_status]);
 
-            $adv = Advertisement::with('customer')->find($request->id);
-            $status = $adv->status;
-            if ($adv->customer->notification == 1) {
-                if ($status == '0') {
-                    $status_text  = 'Approved';
-                } else if ($status == '1') {
-                    $status_text  = 'Pending';
-                } else if ($status == '2') {
-                    $status_text  = 'Rejected';
-                }
-                $user_token = Usertokens::where('customer_id', $adv->customer->id)->pluck('fcm_id')->toArray();
-                //START :: Send Notification To Customer
-                $fcm_ids = array();
-                $fcm_ids = $user_token;
-                if (!empty($fcm_ids)) {
-                    $registrationIDs = $fcm_ids;
-                    $fcmMsg = array(
-                        'title' => 'Advertisement Request',
-                        'message' => 'Advertisement Request Is ' . $status_text,
-                        'type' => 'advertisement_request',
-                        'body' => 'Advertisement Request Is ' . $status_text,
-                        'click_action' => 'FLUTTER_NOTIFICATION_CLICK',
-                        'sound' => 'default',
-                        'id' => (string)$adv->id,
-                    );
-                    send_push_notification($registrationIDs, $fcmMsg);
-                }
-                //END ::  Send Notification To Customer
+        try {
+            $anuncio = Anuncio::where(['id' => $request->id])->first();
+            $anuncio->titulo = $request->titulo;
+            $anuncio->link   = $request->link;
+            $anuncio->estado = $request->estado;
 
-                Notifications::create([
-                    'title' => 'Property Inquiry Updated',
-                    'message' => 'Your Advertisement Request is ' . $status_text,
-                    'image' => '',
-                    'type' => '1',
-                    'send_type' => '0',
-                    'customers_id' => $adv->customer->id,
-                    'propertys_id' => $adv->id
-                ]);
+            $image = $getImage->getAttributes()['imagen'];
+
+            if (file_exists(public_path('images') . config('global.PUBS_IMG_PATH') . $image)) {
+                unlink(public_path('images') . config('global.PUBS_IMG_PATH') . $image);
             }
 
+            $destinationPath = public_path('images') . config('global.PUBS_IMG_PATH');
+
+            if (!is_dir($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
+
+            $name = '';
+
+            if ($request->hasfile('image')) {
+                $name = \store_image($request->file('image'), 'PUBS_IMG_PATH');
+            }
+
+            $anuncio->imagen = $name;
+            $anuncio->save();
+
             ResponseService::successRedirectResponse('Advertisement status update Successfully');
+        } catch (\Throwable $th) {
+            ResponseService::errorResponse("Error al actualizar el anuncio.");
         }
+
+        
     }
 
     public function updateStatus(Request $request)
