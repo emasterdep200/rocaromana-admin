@@ -178,9 +178,9 @@
 
                 console.log(row);
 
-                $("#titulo").text(row.nombres+' '+row.apellidos);
-                $("#link").text(row.email);
-                $("#estado").value(row.cedula);
+                $("#titulo").val(row.titulo);
+                $("#link").val(row.link);
+                $("#estado").val(row.estado);
 
 
 
