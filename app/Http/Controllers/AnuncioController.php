@@ -162,16 +162,12 @@ class AnuncioController extends Controller
                     unlink(public_path('images') . config('global.PUBS_IMG_PATH') . $image);
                 }
     
-                $destinationPath = public_path('images') . config('global.PUBS_IMG_PATH');
-    
-                if (!is_dir($destinationPath)) {
-                    mkdir($destinationPath, 0777, true);
-                }
-
                 $name = \store_image($request->file('image'), 'PUBS_IMG_PATH');
+                $anuncio->imagen = $name;
+                
             }
 
-            $anuncio->imagen = $name;
+            
             $anuncio->save();
 
             ResponseService::successRedirectResponse('Advertisement status update Successfully');
