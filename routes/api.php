@@ -23,6 +23,7 @@ Route::post('contct_us', [ApiController::class, 'contct_us']);
 Route::post('mortgage_calc', [ApiController::class, 'mortgage_calc']);
 
 Route::get('get_projects', [ApiController::class, 'get_projects']);
+Route::get('get_anuncios', [ApiController::class, 'getAnuncios']);
 
 Route::get('get_slider', [ApiController::class, 'get_slider']);
 Route::get('get_categories', [ApiController::class, 'get_categories']);
@@ -35,6 +36,7 @@ Route::get('get_app_settings', [ApiController::class, 'get_app_settings']);
 Route::get('get_report_reasons', [ApiController::class, 'get_report_reasons']);
 Route::get('get_seo_settings', [ApiController::class, 'get_seo_settings']);
 Route::post('set_property_total_click', [ApiController::class, 'set_property_total_click']);
+
 
 // Route::get('paypal', [ApiController::class, 'paypal']);
 // Route::get('paypal1', [ApiController::class, 'paypal']);

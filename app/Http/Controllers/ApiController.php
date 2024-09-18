@@ -39,6 +39,7 @@ use App\Models\Advertisement;
 use App\Models\Notifications;
 use App\Models\InterestedUser;
 use App\Models\PropertyImages;
+use App\Models\Anuncio;
 
 // use GuzzleHttp\Client;
 use App\Models\report_reasons;
@@ -4304,6 +4305,21 @@ class ApiController extends Controller
             return response()->json($response,500);
         }
 
+    }
+
+
+    public function getAnuncios(){
+
+        $anuncios = Anuncio::where(["estado" => 'activo']);
+
+        $response = [
+            "error"   => false,
+            "data"    => $anuncios->get(),
+            "total"   => $anuncios->count(),
+            "message" => "Data fetched"
+        ];
+
+        return response()->json($response, 200);
     }
 
 
