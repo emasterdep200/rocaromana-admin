@@ -9,6 +9,9 @@ use App\Models\Asesor;
 use App\Models\Package;
 use App\Services\ResponseService;
 
+use Illuminate\Support\Facades\Auth;
+
+
 class AsesorController extends Controller
 {
     /**
@@ -66,7 +69,7 @@ class AsesorController extends Controller
             $sql->where(['cargo' =>'asesor'])->whereIn('ciudad', $ciudadeCodes);
         }else{
             $sql = Asesor::orderBy($sort, $order);
-            //$sql->where(['cargo' => 'asesor']);
+            $sql->where(['cargo' => 'asesor']);
         }
 
 
