@@ -56,13 +56,18 @@ class AsesorController extends Controller
 
         $ciudadeCodes = [];
 
-        $zona = Zonas::where(['id' => Auth::user()->zone])->with('ciudades')->get();
-        $zona[0]->ciudades->each(function ($ciudad) use (&$ciudadeCodes, &$ventasCiudad) {
-            array_push($ciudadeCodes, $ciudad->codigo);
-        });
+        if(Auth::user()->zone != NULL){
+            $zona = Zonas::where(['id' => Auth::user()->zone])->with('ciudades')->get();
+            $zona[0]->ciudades->each(function ($ciudad) use (&$ciudadeCodes, &$ventasCiudad) {
+                array_push($ciudadeCodes, $ciudad->codigo);
+            });
 
 
-        $sql = Asesor::whereIn('ciudad', $ciudadeCodes)->orderBy($sort, $order);
+            $sql = Asesor::whereIn('ciudad', $ciudadeCodes)->orderBy($sort, $order);
+        }else{
+            $sql = Asesor::orderBy($sort, $order);
+        }
+
 
 
         if (isset($_GET['search']) && !empty($_GET['search'])) {
