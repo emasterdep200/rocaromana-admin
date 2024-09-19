@@ -62,9 +62,11 @@ class AsesorController extends Controller
                 array_push($ciudadeCodes, $ciudad->codigo);
             });
 
-            $sql = Asesor::where(['cargo' =>'asesor'])->whereIn('ciudad', $ciudadeCodes)->orderBy($sort, $order);
+            $sql = Asesor::orderBy($sort, $order);
+            $sql->where(['cargo' =>'asesor'])->whereIn('ciudad', $ciudadeCodes);
         }else{
-            $sql = Asesor::where(['cargo' => 'asesor'])->orderBy($sort, $order);
+            $sql = Asesor::orderBy($sort, $order);
+            $sql->where(['cargo' => 'asesor']);
         }
 
 
