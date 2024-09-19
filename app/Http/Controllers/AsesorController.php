@@ -66,7 +66,7 @@ class AsesorController extends Controller
             $sql->where(['cargo' =>'asesor'])->whereIn('ciudad', $ciudadeCodes);
         }else{
             $sql = Asesor::orderBy($sort, $order);
-            $sql->where(['cargo' => 'asesor']);
+            //$sql->where(['cargo' => 'asesor']);
         }
 
 
