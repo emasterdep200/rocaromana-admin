@@ -67,6 +67,10 @@ use Illuminate\Support\Facades\Validator;
 
 use Intervention\Image\ImageManagerStatic as Image;
 
+
+use Illuminate\Support\Facades\Log;
+
+
 class ApiController extends Controller
 {
 
@@ -1000,6 +1004,10 @@ class ApiController extends Controller
                 'message' => 'Something Went Wrong',
                 'errorm' => $e->getMessage()
             );
+
+            Log::warning($e->getMessage());
+
+
             return response()->json($response,500);
         }
         return response()->json($response);
