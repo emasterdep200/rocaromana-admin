@@ -1120,7 +1120,7 @@ class ApiController extends Controller
                     // }
 
                     if (isset($request->is_premium)) {
-                        $property->is_premium = $request->is_premium == "true" ? 1 : 0;
+                        $property->is_premium = 0;
                     }
 
 
