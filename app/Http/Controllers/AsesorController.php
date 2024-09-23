@@ -11,6 +11,8 @@ use App\Services\ResponseService;
 
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Log;
+
 
 class AsesorController extends Controller
 {
@@ -64,6 +66,9 @@ class AsesorController extends Controller
             $zona[0]->ciudades->each(function ($ciudad) use (&$ciudadeCodes, &$ventasCiudad) {
                 array_push($ciudadeCodes, $ciudad->codigo);
             });
+
+
+            Log::warning($ciudadeCodes);
 
             $sql = Asesor::orderBy($sort, $order);
             $sql->where(['cargo' =>'asesor'])->whereIn('ciudad', $ciudadeCodes);
