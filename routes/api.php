@@ -91,6 +91,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('get_chats', [ApiController::class, 'get_chats']);
 
     Route::get('get_user_recommendation', [ApiController::class, 'get_user_recommendation']);
+    Route::get('get_anuncion_by_id', [ApiController::class, 'getAnunciosById']);
 
 
     Route::get('paypal', [ApiController::class, 'paypal']);

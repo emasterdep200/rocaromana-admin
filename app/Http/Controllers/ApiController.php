@@ -4318,6 +4318,21 @@ class ApiController extends Controller
 
     public function getAnuncios(){  
 
+        $anuncios = Anuncio::where(["estado" => 'activo']);
+
+        $response = [
+            "error"   => false,
+            "data"    => $anuncios->get(),
+            "total"   => $anuncios->count(),
+            "message" => "Data fetched"
+        ];
+
+        return response()->json($response, 200);
+    }
+
+
+    public function getAnunciosById(){  
+
         $user = Auth::guard('sanctum')->user()->id;
         $anuncios = Anuncio::where(["estado" => 'activo', "owner" => $user]);
 
