@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\Usertokens;
 use Illuminate\Http\Request;
 use App\Models\Notifications;
 use App\Models\Anuncio;
 use App\Models\Package;
 use App\Services\ResponseService;
+
 
 class AnuncioController extends Controller
 {
@@ -80,12 +83,14 @@ class AnuncioController extends Controller
 
         $sql = Anuncio::orderBy($sort, $order);
 
+        $user = Auth::guard('sanctum')->user()->id;
 
         if (isset($_GET['search']) && !empty($_GET['search'])) {
             $search = $_GET['search'];
             $sql->where('id', 'LIKE', "%$search%")->orwhere('titulo', 'LIKE', "%$search%");
         }
 
+        $sql->where(['owner' => $user]);
 
         $total = $sql->count();
 
