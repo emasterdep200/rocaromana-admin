@@ -901,6 +901,7 @@ class ApiController extends Controller
                 }else{
                     $addPropertyStatus = 1;
                 }
+
                 // Update the Limit and status
                 UserPurchasedPackage::where('id', $currentPackage->id)->update(['used_limit_for_property' => $newPropertyLimitCount,'prop_status' => $addPropertyStatus]);
 
@@ -913,6 +914,7 @@ class ApiController extends Controller
                 if (!is_dir($destinationPath)) {
                     mkdir($destinationPath, 0777, true);
                 }
+
                 if ($request->facilities) {
                     foreach ($request->facilities as $key => $value) {
 
@@ -923,6 +925,7 @@ class ApiController extends Controller
                         $facilities->save();
                     }
                 }
+
                 if ($request->parameters) {
                     foreach ($request->parameters as $key => $parameter) {
 
@@ -969,6 +972,7 @@ class ApiController extends Controller
                 if (!is_dir($destinationPath)) {
                     mkdir($destinationPath, 0777, true);
                 }
+
                 if ($request->hasfile('gallery_images')) {
 
 
@@ -3402,7 +3406,7 @@ class ApiController extends Controller
             $user_package->save();
 
             if ($package->type == "premium_user") {
-                $user->is_premium = 1;
+                $user->is_premium = 0;
             } else {
 
                 $user->subscription = 1;
