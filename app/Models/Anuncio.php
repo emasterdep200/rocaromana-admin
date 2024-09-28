@@ -18,6 +18,7 @@ class Anuncio extends Model
         'imagen',
         'titulo',
         'link',
+        'owner',
         'estado'
     ];
 
