@@ -4335,10 +4335,10 @@ class ApiController extends Controller
     }
 
 
-    public function getAnunciosById(){  
+    public function getAnunciosById(Request $request){  
 
         $user = Auth::guard('sanctum')->user()->id;
-        $anuncios = Anuncio::where(["estado" => 'activo', "owner" => $user]);
+        $anuncios = Anuncio::where(["estado" => 'activo', "owner" => $request->user_id]);
 
         $response = [
             "error"   => false,
