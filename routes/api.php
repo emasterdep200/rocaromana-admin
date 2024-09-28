@@ -24,6 +24,7 @@ Route::post('mortgage_calc', [ApiController::class, 'mortgage_calc']);
 
 Route::get('get_projects', [ApiController::class, 'get_projects']);
 Route::get('get_anuncios', [ApiController::class, 'getAnuncios']);
+Route::post('add_anuncio', [ApiController::class, 'addAnuncio']);
 
 Route::get('get_slider', [ApiController::class, 'get_slider']);
 Route::get('get_categories', [ApiController::class, 'get_categories']);

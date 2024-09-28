@@ -4351,6 +4351,52 @@ class ApiController extends Controller
     }
 
 
+    public function addAnuncio(Request $request){
+
+        try {
+            $destinationPath = public_path('images') . config('global.PUBS_IMG_PATH');
+
+            if (!is_dir($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
+    
+            $name = '';
+    
+            if ($request->hasfile('imagen')) {
+                $name = \store_image($request->file('imagen'), 'PUBS_IMG_PATH');
+            }
+    
+            Anuncio::create([
+                'titulo' => (isset($request->titulo)) ? $request->titulo : 0,
+                'imagen' => ($name) ? $name : '',
+                'link'   => (isset($request->link)) ? $request->link : '',
+                'owner'  => (isset($request->owner)) ? $request->owner : '',
+                'estado' => (isset($request->estado)) ? 'pending' : ''
+            ]);
+    
+            $response = [
+                "error"   => false,
+                "data"    => [],
+                "total"   => 1,
+                "message" => "Guardado existoso"
+            ];
+    
+            
+        } catch (\Throwable $th) {
+            $response = [
+                "error"   => true,
+                "data"    => [],
+                "total"   => 0,
+                "message" => "Error, intente de nuevo"
+            ];
+        }
+
+        return response()->json($response, 200);
+
+
+    }
+
+
 
 
 }
