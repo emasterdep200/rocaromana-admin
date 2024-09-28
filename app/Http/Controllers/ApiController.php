@@ -4371,7 +4371,7 @@ class ApiController extends Controller
                 'imagen' => ($name) ? $name : '',
                 'link'   => (isset($request->link)) ? $request->link : '',
                 'owner'  => (isset($request->owner)) ? $request->owner : '',
-                'estado' => (isset($request->estado)) ? 'pending' : ''
+                'estado' => 'pending'
             ]);
     
             $response = [
