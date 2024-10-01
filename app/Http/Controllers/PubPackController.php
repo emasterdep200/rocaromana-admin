@@ -130,28 +130,12 @@ class PubPackController extends Controller
     {
 
         try {
-            $anuncio = Anuncio::where(['id' => $request->id])->first();
-            $anuncio->titulo = $request->titulo;
-            $anuncio->link   = $request->link;
-            $anuncio->estado = $request->estado;
 
-            $image = $anuncio->getAttributes()['imagen'];
-
-            $name = '';
-
-            if ($request->hasfile('image')) {
-
-                if (file_exists(public_path('images') . config('global.PUBS_IMG_PATH') . $image)) {
-                    unlink(public_path('images') . config('global.PUBS_IMG_PATH') . $image);
-                }
-    
-                $name = \store_image($request->file('image'), 'PUBS_IMG_PATH');
-                $anuncio->imagen = $name;
-                
-            }
-
-            
-            $anuncio->save();
+            $pubpack = PubPack::where(['id' => $request->id])->first();
+            $pubpack->nombre     = $request->nombre;
+            $pubpack->price      = $request->price;
+            $pubpack->days_valid = $request->days_valid;          
+            $pubpack->save();
 
             ResponseService::successRedirectResponse('Advertisement status update Successfully');
         } catch (\Throwable $th) {
