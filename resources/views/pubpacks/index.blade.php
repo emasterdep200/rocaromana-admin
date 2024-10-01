@@ -117,7 +117,7 @@
                 </div>
                 <div class="modal-body">
 
-                    <form method="post" action="{{ url('anuncio_update') }}"  name="update">
+                    <form method="post" action="{{ url('pubpackage_update') }}"  name="update">
                     @csrf   
 
                         <input type="hidden" name="id" id="id">
