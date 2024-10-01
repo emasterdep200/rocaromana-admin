@@ -45,11 +45,10 @@ class PubPackController extends Controller
     public function store(Request $request)
     {
 
-
         PubPack::create([
             'nombre'       => $request->nombre,
             'price'        => $request->price,
-            'days_valid'   => $request->days
+            'days_valid'   => $request->days_valid
         ]);
 
         ResponseService::successRedirectResponse('Plan publicitario creado con exito.');
@@ -87,7 +86,7 @@ class PubPackController extends Controller
         $tempRow = array();
         $count = 1;
 
-        
+
         foreach ($res as $row) {
 
 
