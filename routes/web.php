@@ -282,7 +282,7 @@ Route::middleware(['auth', 'checklogin','language'])->group(function () {
     // Rutas para paquetes de publicidad
     Route::get('pubpackage', [PubPackController::class, 'index'])->name('pubpackage');
     Route::get('pubpackage_listing', [PubPackController::class, 'show'])->name('list_pubpackage');
-    Route::post('pubpackage_create', [PubPackController::class,'create'])->name('create_pubpackage');
+    Route::post('pubpackage_create', [PubPackController::class,'store'])->name('create_pubpackage');
 
     // Ruta Chat
     Route::get('chat', function () {
