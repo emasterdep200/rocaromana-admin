@@ -112,12 +112,12 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel1">EDITAR ANUNCIO</h5>
+                    <h5 class="modal-title" id="myModalLabel1">EDITAR PAQUETE</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
 
-                    <form method="post" action="{{ url('anuncio_update') }}" enctype="multipart/form-data" name="update">
+                    <form method="post" action="{{ url('anuncio_update') }}"  name="update">
                     @csrf   
 
                         <input type="hidden" name="id" id="id">
@@ -125,33 +125,21 @@
                         <!-- Campo Título -->
                         <div class="mb-3">
                             <label for="titulo" class="form-label">Título</label>
-                            <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Ingresa el título" required>
+                            <input type="text" class="form-control" name="nombre" id="nombre" required>
                         </div>
 
                         <!-- Campo Imagen -->
                         <div class="mb-3">
                             <label for="imagen" class="form-label">Imagen</label>
-                            <input type="file" class="form-control" name="image" id="imagen" accept="image/*" required>
-                            <p>
-                                <img src rel="current_image" heigth="200" width="200" class="rounded m-3">
-                            </p>
+                            <input type="text" class="form-control" name="price" id="price" required>
                         </div>
 
                         <!-- Campo Link -->
                         <div class="mb-3">
-                            <label for="link" class="form-label">Link</label>
-                            <input type="url" class="form-control" name="link" id="link" placeholder="Ingresa el link" required>
+                            <label for="link" class="form-label">Dalido por (dias)</label>
+                            <input type="url" class="form-control" name="days_valid" id="days_valid" required>
                         </div>
 
-                        <!-- Campo Estado -->
-                        <div class="mb-3">
-                            <label for="estado" class="form-label">Estado</label>
-                            <select class="form-select" id="estado" name="estado" required>
-                                <option value="">Selecciona un estado</option>
-                                <option value="activo">Activo</option>
-                                <option value="inactivo">Inactivo</option>
-                            </select>
-                        </div>
 
                         <!-- Botón Enviar -->
                         <button type="submit" class="btn btn-primary">Enviar</button>
@@ -175,12 +163,10 @@
 
                 console.log(row);
 
-                $("form[name=update] #titulo").val(row.titulo);
-                $("form[name=update] #link").val(row.link);
-                $("form[name=update] #estado").val(row.estado);
+                $("form[name=update] #nombre").val(row.nombre);
+                $("form[name=update] #price").val(row.price);
+                $("form[name=update] #days_valid").val(row.days_valid);
                 $("form[name=update] #id").val(row.id);
-
-                $('form[name=update] img[rel=current_image]').attr('src', `https://admin.rocaromana.com/images/publicity/${row.imagen}`);
 
 
             }
