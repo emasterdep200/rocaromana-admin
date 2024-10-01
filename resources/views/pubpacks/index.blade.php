@@ -47,7 +47,7 @@
                                     <th scope="col" data-field="id" data-sortable="true" data-align="center">ID</th>
                                     <th scope="col" data-field="nombre" data-sortable="true" data-align="center">Nombre</th>
                                     <th scope="col" data-field="price" data-sortable="true" data-align="center">Precio</th>
-                                    <th scope="col" data-field="days_valid" data-sortable="true" data-align="center">Valido por</th>
+                                    <th scope="col" data-field="days_valid" data-sortable="true" data-align="center">Valido por (dias)</th>
                                     <th scope="col" data-field="operate" data-sortable="false"
                                         data-events="actionEvents" data-align="center">Action</th>
                                 </tr>
