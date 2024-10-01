@@ -137,7 +137,7 @@ class PubPackController extends Controller
             $pubpack->days_valid = $request->days_valid;          
             $pubpack->save();
 
-            ResponseService::successRedirectResponse('Advertisement status update Successfully');
+            ResponseService::successRedirectResponse('Pub Package Actualizado.');
         } catch (\Throwable $th) {
             ResponseService::errorResponse("Error al actualizar el anuncio.  ".$th);
         }
