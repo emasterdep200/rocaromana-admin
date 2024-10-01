@@ -27,6 +27,7 @@ use App\Http\Controllers\AsesorController;
 use App\Http\Controllers\ComisionController;
 use App\Http\Controllers\VentaController;
 use App\Http\Controllers\AnuncioController;
+use App\Http\Controllers\PubPackController;
 use Illuminate\Support\Facades\Artisan;
 
 /*
@@ -277,6 +278,9 @@ Route::middleware(['auth', 'checklogin','language'])->group(function () {
     Route::get('anuncios_listing', [AnuncioController::class, 'show'])->name('list_anuncio');
     Route::post('anuncio_create', [AnuncioController::class, 'store'])->name('create_anuncio');
     Route::post('anuncio_update', [AnuncioController::class, 'update'])->name('update_anuncio');
+
+    // Rutas para paquetes de publicidad
+    Route::get('pubpackage', [PubPackController::class, 'index'])->name('pubpackage');
 
     // Ruta Chat
     Route::get('chat', function () {
