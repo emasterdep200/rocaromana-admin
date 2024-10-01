@@ -137,7 +137,7 @@
                         <!-- Campo Link -->
                         <div class="mb-3">
                             <label for="link" class="form-label">Dalido por (dias)</label>
-                            <input type="url" class="form-control" name="days_valid" id="days_valid" required>
+                            <input type="text" class="form-control" name="days_valid" id="days_valid" required>
                         </div>
 
 
