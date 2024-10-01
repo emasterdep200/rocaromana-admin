@@ -74,7 +74,7 @@
                 </div>
                 <div class="modal-body">
 
-                    <form method="post" action="{{ url('pubpackage_create') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ url('pubpackage_create') }}">
                     @csrf
 
                         <!-- Campo Título -->
