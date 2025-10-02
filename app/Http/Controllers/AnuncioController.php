@@ -73,7 +73,8 @@ class AnuncioController extends Controller
 
 
 
-    public function show(Request $request){
+    public function show(Request $request)
+    {
 
         $offset = $request->input('offset', 0);
         $limit  = $request->input('limit', 10);
@@ -90,7 +91,7 @@ class AnuncioController extends Controller
             $sql->where('id', 'LIKE', "%$search%")->orwhere('titulo', 'LIKE', "%$search%");
         }
 
-        $sql->where(['owner' => $user]);
+        // $sql->where(['owner' => $user]);
 
         $total = $sql->count();
 
@@ -114,7 +115,8 @@ class AnuncioController extends Controller
 
             $tempRow = $row->toArray();
 
-            $operate = '<a  id="' . $row->id . '"  data-id="' . $row->id . '"class="btn icon btn-primary btn-sm rounded-pill editdata"  data-bs-toggle="modal" data-bs-target="#viewEditAnuncio"  title="Detalle"><i class="fa fa-edit"></i></a>';
+            $operate = '<a  id="' . $row->id . '"  data-id="' . $row->id . '"class="btn icon btn-primary btn-sm rounded-pill editdata"  data-bs-toggle="modal" data-bs-target="#viewEditAnuncio"  title="Editar"><i class="fa fa-edit"></i></a>';
+            $operate .= ' <a  id="' . $row->id . '" data-id="' . $row->id . '" class="btn icon btn-danger btn-sm rounded-pill deletedata" title="Eliminar"><i class="fa fa-trash"></i></a>';
 
             $tempRow['titulo']  = $row->titulo;
             $tempRow['operate'] = $operate;
@@ -124,7 +126,6 @@ class AnuncioController extends Controller
 
         $bulkData['rows'] = $rows;
         return response()->json($bulkData);
-
     }
 
 
@@ -166,21 +167,18 @@ class AnuncioController extends Controller
                 if (file_exists(public_path('images') . config('global.PUBS_IMG_PATH') . $image)) {
                     unlink(public_path('images') . config('global.PUBS_IMG_PATH') . $image);
                 }
-    
+
                 $name = \store_image($request->file('image'), 'PUBS_IMG_PATH');
                 $anuncio->imagen = $name;
-                
             }
 
-            
+
             $anuncio->save();
 
             ResponseService::successRedirectResponse('Advertisement status update Successfully');
         } catch (\Throwable $th) {
-            ResponseService::errorResponse("Error al actualizar el anuncio.  ".$th);
+            ResponseService::errorResponse("Error al actualizar el anuncio.  " . $th);
         }
-
-        
     }
 
     public function updateStatus(Request $request)
@@ -201,7 +199,7 @@ class AnuncioController extends Controller
      */
     public function destroy($id)
     {
-        
+
         $getImage = Anuncio::where('id', $id)->first();
         $image = $getImage->getAttributes()['imagen'];
 
@@ -209,10 +207,9 @@ class AnuncioController extends Controller
             if (file_exists(public_path('images') . config('global.PUBS_IMG_PATH') . $image)) {
                 unlink(public_path('images') . config('global.PUBS_IMG_PATH') . $image);
             }
-            ResponseService::successRedirectResponse('slider delete successfully');
+            ResponseService::successResponse('Anuncio eliminado exitosamente');
         } else {
-            ResponseService::errorRedirectResponse(null, 'something is wrong !!!');
+            ResponseService::errorResponse('No se pudo eliminar el anuncio');
         }
-        
     }
 }

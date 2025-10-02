@@ -115,14 +115,13 @@
                     {{-- Price --}}
                     <div class="control-label col-12 form-group mt-2 mandatory">
                         {{ Form::label('price', __('Price') . '(' . $currency_symbol . ')', ['class' => 'form-label col-12 ']) }}
-                        {{ Form::number('price', '', [
+                        {{ Form::text('price_display', '', [
                             'class' => 'form-control mt-1 ',
                             'placeholder' => trans('Price'),
-                            'required' => 'true',
-                            'min' => '1',
-                            'id' => 'price',
-                            'max' => '1000000000000'
+                            'id' => 'price_display',
+                            'autocomplete' => 'off'
                         ]) }}
+                        {{ Form::hidden('price', '', ['id' => 'price', 'required' => 'true']) }}
                     </div>
                 </div>
             </div>
@@ -359,6 +358,34 @@
             $('#facility').hide();
             $('#duration').hide();
             $('#price_duration').removeAttr('required');
+
+            // Formateo de precio con puntos
+            $('#price_display').on('input', function() {
+                // Obtener el valor actual y remover todo excepto números
+                let value = $(this).val().replace(/\D/g, '');
+                
+                // Actualizar el campo hidden con el valor sin formato
+                $('#price').val(value);
+                
+                // Formatear el valor con puntos como separador de miles
+                if (value) {
+                    let formattedValue = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                    $(this).val(formattedValue);
+                } else {
+                    $(this).val('');
+                }
+            });
+
+            // Validar que el campo tenga un valor antes de enviar el formulario
+            $('#myForm').on('submit', function(e) {
+                let priceValue = $('#price').val();
+                if (!priceValue || priceValue === '0') {
+                    e.preventDefault();
+                    alert('Por favor ingrese un precio válido');
+                    $('#price_display').focus();
+                    return false;
+                }
+            });
 
             // Event handler for radio button change
             $('input[name="property_type"]').change(function() {

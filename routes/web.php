@@ -63,11 +63,11 @@ Route::post('/webhook/payu', [WebhookController::class, 'payu']);
 
 
 
-Route::middleware(['auth', 'checklogin','language'])->group(function () {
+Route::middleware(['auth', 'checklogin', 'language'])->group(function () {
 
-    Artisan::call('cache:clear');
-    Artisan::call('view:clear');
-    Artisan::call('view:cache');
+    // Artisan::call('cache:clear');
+    // Artisan::call('view:clear');
+    // Artisan::call('view:cache');
 
     Route::get('render_svg', [HomeController::class, 'render_svg'])->name('render_svg');
     Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'blank_dashboard'])->name('dashboard');
@@ -219,7 +219,7 @@ Route::middleware(['auth', 'checklogin','language'])->group(function () {
     Route::get('get-state-by-country', [PropertController::class, 'getStatesByCountry'])->name('property.getStatesByCountry');
     Route::get('property-destory/{id}', [PropertController::class, 'destroy'])->name('property.destroy');
     Route::get('getFeaturedPropertyList', [PropertController::class, 'getFeaturedPropertyList']);
-            Route::post('updateaccessability', [PropertController::class, 'updateaccessability'])->name('updateaccessability');
+    Route::post('updateaccessability', [PropertController::class, 'updateaccessability'])->name('updateaccessability');
 
     Route::get('updateFCMID', [UserController::class, 'updateFCMID']);
     /// END :: PROPERTY ROUTE
@@ -278,11 +278,12 @@ Route::middleware(['auth', 'checklogin','language'])->group(function () {
     Route::get('anuncios_listing', [AnuncioController::class, 'show'])->name('list_anuncio');
     Route::post('anuncio_create', [AnuncioController::class, 'store'])->name('create_anuncio');
     Route::post('anuncio_update', [AnuncioController::class, 'update'])->name('update_anuncio');
+    Route::post('anuncio_delete/{id}', [AnuncioController::class, 'destroy'])->name('delete_anuncio');
 
     // Rutas para paquetes de publicidad
     Route::get('pubpackage', [PubPackController::class, 'index'])->name('pubpackage');
     Route::get('pubpackage_listing', [PubPackController::class, 'show'])->name('list_pubpackage');
-    Route::post('pubpackage_create', [PubPackController::class,'store'])->name('create_pubpackage');
+    Route::post('pubpackage_create', [PubPackController::class, 'store'])->name('create_pubpackage');
     Route::post('pubpackage_update', [PubPackController::class, 'update'])->name('update_anuncio');
 
     // Ruta Chat
