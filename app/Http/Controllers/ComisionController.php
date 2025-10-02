@@ -87,8 +87,12 @@ class ComisionController extends Controller
 
             $operate = '<a  id="' . $row->id . '"  data-id="' . $row->id . '"class="btn icon btn-primary btn-sm rounded-pill editdata"  data-bs-toggle="modal" data-bs-target="#editUsereditModal1"  title="Edit"><i class="fa fa-edit"></i></a>';
             $operate .= '&nbsp;&nbsp;<a  id="' . $row->id . '" data-bs-toggle="modal"  class="btn icon btn-primary btn-sm rounded-pill" data-bs-target="#resetpasswordmodel" onclick="setpasswordValue(this.id);"><i class="bi bi-key text-dark-50"></i></a>';
-
-            $tempRow['asesor'] = $row->asesor->nombres;
+        
+            if($row->asesor != null){
+                $tempRow['asesor'] = $row->asesor->nombres;
+            } else {
+                $tempRow['asesor'] = '';
+            }
             $tempRow['estado'] = ($row->estado == 'P') ? 'Pendiente' : 'Pagada';
 
             $tempRow['operate'] = $operate;

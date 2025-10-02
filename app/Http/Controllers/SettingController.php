@@ -179,6 +179,7 @@ class SettingController extends Controller
         }
         $app_url = (string)url('/');
         $app_url = preg_replace('#^https?://#i', '', $app_url);
+        $app_url = str_replace('.co','.com', $app_url);
 
         $curl = curl_init();
         curl_setopt_array($curl, array(

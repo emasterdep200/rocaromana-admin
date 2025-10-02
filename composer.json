@@ -7,7 +7,7 @@
     "require": {
         "php": "^8.0.2",
         "barryvdh/laravel-debugbar": "^3.7",
-        "dacoto/laravel-wizard-installer": "^4.0",
+        "dacoto/laravel-setenv": "*",
         "doctrine/dbal": "^3.6",
         "google/apiclient": "^2.16",
         "guzzlehttp/guzzle": "^7.2",
